@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><declare-styleable name="Wavee">
+    <attr name="wlv_progressColor" format="color" />
+    <attr name="wlv_progressValue" format="integer" />
+    <attr name="wlv_waveColor" format="color" />
+    <attr name="wlv_view_background_Color" format="color" />
+    <attr name="wlv_waveAmplitude" format="float" />
+    <attr name="wlv_title" format="string" />
+    <attr name="wlv_titleSize" format="dimension" />
+    <attr name="wlv_titleColor" format="color" />
+</declare-styleable></resources>
