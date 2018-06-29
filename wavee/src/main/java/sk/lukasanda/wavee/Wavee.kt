@@ -20,11 +20,10 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     private var mCanvasWidth: Int = 0
     var amplitudeRatio: Float = 0.toFloat()
         private set
-//    private var mWaveBgColor: Int = 0
     private var mWaveColor: Int = 0
 
     // Properties.
-    var centerTitle: String? = ""
+    private var centerTitle: String? = ""
         get() = "$progressValue%"
     private var mDefaultWaterLevel: Float = 0.toFloat()
     var waterLevelRatio = 1f
@@ -41,7 +40,7 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                 invalidate()
             }
         }
-    private var mProgressValue = DEFAULT_WAVE_PROGRESS_VALUE
+    var mProgressValue = DEFAULT_WAVE_PROGRESS_VALUE
 
     // Object used to draw.
     // Shader containing repeated waves.
@@ -62,8 +61,6 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         isAntiAlias = true
         style = Paint.Style.FILL
     }
-
-    // Point to draw title.
 
     private var mCenterTitlePaint: Paint = Paint().apply {
         isAntiAlias = true
@@ -99,14 +96,14 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     var borderWidth: Float
         get() = mBorderPaint.strokeWidth
         set(width) {
-            mBorderPaint!!.strokeWidth = width
+            mBorderPaint.strokeWidth = width
             invalidate()
         }
 
     var borderColor: Int
         get() = mBorderPaint.color
         set(color) {
-            mBorderPaint!!.color = color
+            mBorderPaint.color = color
             updateWaveShader()
             invalidate()
         }
@@ -121,13 +118,13 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
     var centerTitleColor: Int
         get() = mCenterTitlePaint.color
         set(centerTitleColor) {
-            mCenterTitlePaint!!.color = centerTitleColor
+            mCenterTitlePaint.color = centerTitleColor
         }
 
     var centerTitleSize: Float
         get() = mCenterTitlePaint.textSize
         set(centerTitleSize) {
-            mCenterTitlePaint!!.textSize = sp2px(centerTitleSize).toFloat()
+            mCenterTitlePaint.textSize = sp2px(centerTitleSize).toFloat()
         }
 
     private lateinit var rect: RectF
@@ -199,7 +196,6 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
             // Get borderWidth.
             val borderWidth = mBorderPaint.strokeWidth
 
-
             //Draw circle background
             val radius = width / 2f - 1f - 20f - borderWidth
 
@@ -214,7 +210,6 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
             canvas.drawArc(rect, -90f, arcProgress, false, mBorderPaint)
 
             mWavePaint.alpha = 200
-
 
             //Draw text
             if (!TextUtils.isEmpty(centerTitle)) {
@@ -286,9 +281,8 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
         }
     }
 
-    private fun haveBoundsChanged(): Boolean {
-        return measuredWidth != bitmapBuffer!!.width || measuredHeight != bitmapBuffer.height
-    }
+    private fun haveBoundsChanged() = measuredWidth != bitmapBuffer!!.width
+            || measuredHeight != bitmapBuffer.height
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val width = measureWidth(widthMeasureSpec)
@@ -340,7 +334,6 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
      *
      * @param amplitudeRatio Default to be 0.05. Result of amplitudeRatio + waterLevelRatio should be less than 1.
      */
-
     fun setAmplitudeRatio(amplitudeRatio: Int) {
         if (this.amplitudeRatio != amplitudeRatio.toFloat() / 1000) {
             this.amplitudeRatio = amplitudeRatio.toFloat() / 1000

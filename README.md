@@ -1,5 +1,9 @@
 # Wavee - Simple android loading indicator written entirely in Kotlin
 
+## Sample
+
+![gif_image](https://i.imgur.com/9v0CjxN.gif)
+
 To add it to your project:
 
 In your root build.gradle add this
