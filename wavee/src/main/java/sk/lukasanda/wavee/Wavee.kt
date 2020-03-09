@@ -211,6 +211,9 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
 
             mWavePaint.alpha = 200
 
+            //Draw foreground wave
+            canvas.drawCircle(width / 2f, height / 2f, radius, mWavePaint)
+
             //Draw text
             if (!TextUtils.isEmpty(centerTitle)) {
                 val middle = mCenterTitlePaint.measureText(centerTitle)
@@ -218,8 +221,6 @@ class Wavee @JvmOverloads constructor(context: Context, attrs: AttributeSet? = n
                 canvas.drawText(centerTitle!!, (width - middle) / 2,
                         height / 2 - (mCenterTitlePaint.descent() + mCenterTitlePaint.ascent()) / 2, mCenterTitlePaint)
             }
-            //Draw foreground wave
-            canvas.drawCircle(width / 2f, height / 2f, radius, mWavePaint)
 
         }
     }
